@@ -1,4 +1,4 @@
-import {Container} from "../components/container";
+import { Container } from "../components/container";
 import { useForm, useFormContext } from "react-hook-form";
 import { ApplicationForm, Bank } from "../interfaces";
 import DaumPostcode from "react-daum-postcode";
@@ -86,7 +86,7 @@ export default function ApplyPage() {
           <h2 className="text-base font-semibold leading-7 text-gray-900">
             신청서
           </h2>
-          <div className="mt-10 flex flex-col gap-8">
+          <div className="mt-10 flex flex-col gap-4">
             {/* 전력량 */}
             <div className="w-64">
               <label
@@ -96,18 +96,21 @@ export default function ApplyPage() {
                 판매할 전력량
               </label>
               <div className="mt-2">
-                <div className="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-yellow-500 sm:max-w-md">
+                <div className="flex w-32 rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-yellow-500 sm:max-w-md">
                   <input
                     name="watt"
                     id="watt"
-                    className="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
+                    className="block w-20 text-right border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-nono sm:text-sm sm:leading-6"
                     {...register("watt", {
                       required: "판매할 전력량을 입력해주세요.",
                       min: 100,
                     })}
                   />
+                  <span className="flex select-none items-center pl-2 text-gray-500 sm:text-sm">
+                    kWh
+                  </span>
                 </div>
-                <span>
+                <span className="text-xs text-red-500">
                   {errors?.watt?.type === "min"
                     ? "100kWh의 전력량부터 판매 가능합니다."
                     : ""}
@@ -163,7 +166,9 @@ export default function ApplyPage() {
                   주소 검색
                 </div>
               </div>
-              <span>{errors?.address?.message}</span>
+              <span className="text-xs text-red-500">
+                {errors?.address?.message}
+              </span>
             </div>
 
             <div>
@@ -183,7 +188,9 @@ export default function ApplyPage() {
                   })}
                 />
               </div>
-              <span>{errors?.address_detail?.message}</span>
+              <span className="text-xs text-red-600">
+                {errors?.address_detail?.message}
+              </span>
             </div>
             {/* 전화번호 */}
             {/* 은행 */}
@@ -229,7 +236,7 @@ export default function ApplyPage() {
                       })}
                     />
                   </div>
-                  <span>
+                  <span className="text-xs text-red-500">
                     {errors?.account?.message}
                     {errors?.account?.type === "pattern"
                       ? "올바른 계좌번호를 입력해주세요."
@@ -243,15 +250,15 @@ export default function ApplyPage() {
         <div className="mt-6 flex items-center justify-end gap-x-6">
           <button
             type="button"
-            className="text-sm font-semibold leading-6 text-gray-900"
+            className="text-sm px-6 font-semibold leading-6 hover:text-yellow-500 text-gray-900 transition-colors"
           >
-            Cancel
+            취소
           </button>
           <button
             type="submit"
-            className="rounded-md bg-yellow-500 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-yellow-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-yellow-500"
+            className="rounded-md bg-yellow-500 px-6 py-2 text-sm font-semibold text-white shadow-sm hover:bg-yellow-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-yellow-500"
           >
-            Save
+            생성
           </button>
         </div>
       </form>

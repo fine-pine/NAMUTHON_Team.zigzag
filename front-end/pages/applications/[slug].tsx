@@ -1,10 +1,10 @@
 import { useRouter } from "next/router";
 import ErrorPage from "next/error";
-import Comment from "../../components/comment";
 import { Container } from "../../components/container";
 import distanceToNow from "../../lib/dateRelative";
 import Head from "next/head";
 import { useAuth0 } from "@auth0/auth0-react";
+import ApplicationCard from "../../components/application/card";
 
 export default function ApplicationPage({ application }) {
   const { isAuthenticated } = useAuth0();
@@ -44,7 +44,7 @@ export default function ApplicationPage({ application }) {
             />
           </article>
 
-          <Comment />
+          <ApplicationCard />
         </div>
       )}
     </Container>

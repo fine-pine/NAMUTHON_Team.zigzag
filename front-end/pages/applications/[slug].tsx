@@ -7,11 +7,17 @@ import distanceToNow from "../../lib/dateRelative";
 import { getAllPosts, getPostBySlug } from "../../lib/getPost";
 import markdownToHtml from "../../lib/markdownToHtml";
 import Head from "next/head";
+import { useAuth0 } from "@auth0/auth0-react";
 
 export default function ApplicationPage({
   post,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
+  const { isAuthenticated } = useAuth0();
   const router = useRouter();
+  if (!isAuthenticated) {
+    alert("로그인이 필요합니다.");
+    router.push("/");
+  }
 
   if (!router.isFallback && !post?.slug) {
     return <ErrorPage statusCode={404} />;

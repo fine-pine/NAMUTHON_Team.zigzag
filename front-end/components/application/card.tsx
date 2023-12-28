@@ -45,7 +45,7 @@ export default function ApplicationCard({ application }: ApplicationCardProps) {
   const { user } = useAuth0();
 
   return (
-    <div className="space-y-6 mt-10">
+    <div className="space-y-6 border-solid border-b-2">
       {application && (
         // 권한 확인
         // const isAuthor = user && user.email === application.user_email;
@@ -53,7 +53,7 @@ export default function ApplicationCard({ application }: ApplicationCardProps) {
         //   user && user.email === process.env.NEXT_PUBLIC_AUTH0_ADMIN_EMAIL;
         <div
           key={application.id}
-          className="flex items-center justify-between space-x-4 py-8 border-solid border-b-2"
+          className="flex items-center justify-between space-x-4 py-8"
         >
           <ApplicationStatus status={application.status} />
           <time className="text-gray-400">

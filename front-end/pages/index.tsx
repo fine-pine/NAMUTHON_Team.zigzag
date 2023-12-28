@@ -1,5 +1,6 @@
 import { Container, WideContainer } from "../components/container";
 import { useAuth0 } from "@auth0/auth0-react";
+import Link from "next/link";
 import { useEffect } from "react";
 
 // 첫 화면
@@ -71,12 +72,13 @@ function HomePage() {
                 <h2 className="text-2xl text-white">
                   오늘 바로 판매 가능! <br /> 지그재그에서 직접 매매!
                 </h2>
-                <button
+                <Link
+                  href="/apply"
                   type="submit"
-                  className="rounded-md bg-white px-6 py-4 text-xl font-semibold shadow-sm hover:bg-yellow-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-yellow-500"
+                  className="rounded-md bg-white px-6 py-4 text-xl font-semibold shadow-sm hover:text-yellow-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-yellow-500"
                 >
                   바로 신청하기
-                </button>
+                </Link>
               </div>
             </div>
           </div>

@@ -29,9 +29,8 @@ public class UserService {
     @Value("${spring.security.next-public-auth0-domain}")
     private String google_access_url;
 
-
-    // Google OAuth 로부터 받은 ID 토큰을 검증하여 UserEntity 를 인증하고 JWT 토큰을 생성하여 반환한다
-    public String loginOAuthGoogle(String idToken) throws GeneralSecurityException, IOException {
+    @Transactional
+    public String loginOAuthGoogle(String idToken) throws GeneralSecurityException, IOException {   // Google OAuth 로부터 받은 ID 토큰을 검증하여 UserEntity 를 인증하고 JWT 토큰을 생성하여 반환한다
         User user = verifyGoogleToken(idToken);
         if(user ==null){
             throw new IllegalArgumentException("null user");
@@ -63,6 +62,7 @@ public class UserService {
         return existingUser;
     }
 
+    @Transactional
     public User verifyGoogleToken(String accessToken) throws JsonProcessingException, IOException {
         ObjectMapper mapper = new ObjectMapper();
 
@@ -105,5 +105,10 @@ public class UserService {
             // 연결 닫기
             connection.disconnect();
         }
+    }
+
+    // id로 유저정보를 가져오는 메서드
+    public User getUser(Long id){
+        return userRepository.findById(id).orElse(null);
     }
 }

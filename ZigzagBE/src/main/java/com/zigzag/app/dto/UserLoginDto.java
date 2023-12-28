@@ -1,9 +1,9 @@
 package com.zigzag.app.dto;
 
-import lombok.Builder;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Getter;
-import lombok.Setter;
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 @Getter
 public class UserLoginDto {
     private String email;

@@ -18,7 +18,7 @@ public class UserController {
 
     private final UserService userService;
 
-    @GetMapping(value = "/v1/oauth/login")
+    @PostMapping(value = "/v1/oauth/login")
     public ResponseEntity LoginWithGoogleOAuth2(@RequestParam("code") String accessCode, HttpServletResponse response) throws GeneralSecurityException, IOException {
         // IdTokenRequestDto 는 요청 바디에서 받아온 ID 토큰을 담고 있다.
         String authToken = userService.loginOAuthGoogle(accessCode);

@@ -21,7 +21,7 @@ public class User {
     private String googleEmail;
 
     @NotNull
-    private String nickname;
+    private String name;
 
     @NotNull
     private String profileImageUrl;
@@ -29,12 +29,6 @@ public class User {
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private Role role;
-
-    private String refreshToken; // 리프레시 토큰
-
-    public void updateRefreshToken(String updateRefreshToken) {
-        this.refreshToken = updateRefreshToken;
-    }
 
     public void setRole(Role role) {
         this.role = role;

@@ -56,7 +56,7 @@ public class UserService {
 
         // 존재하는 경우
         existingUser.setGoogleEmail(user.getGoogleEmail());
-        existingUser.setNickname(user.getNickname());
+        existingUser.setName(user.getName());
         existingUser.setProfileImageUrl(user.getProfileImageUrl());
         existingUser.setRole(user.getRole());
 
@@ -98,7 +98,7 @@ public class UserService {
             return User.builder()
                     .googleEmail(loginDto.getEmail())
                     .profileImageUrl(loginDto.getPicture())
-                    .nickname(loginDto.getName())
+                    .name(loginDto.getName())
                     .role(Role.USER)
                     .build();
         } finally {

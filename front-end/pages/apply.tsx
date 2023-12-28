@@ -1,4 +1,4 @@
-import Container from "../components/container";
+import {Container} from "../components/container";
 import { useForm, useFormContext } from "react-hook-form";
 import { ApplicationForm, Bank } from "../interfaces";
 import DaumPostcode from "react-daum-postcode";

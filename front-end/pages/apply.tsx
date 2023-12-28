@@ -4,8 +4,17 @@ import { ApplicationForm, Bank } from "../interfaces";
 import DaumPostcode from "react-daum-postcode";
 import { Dialog, Transition } from "@headlessui/react";
 import { Fragment, useRef, useState } from "react";
+import { useAuth0 } from "@auth0/auth0-react";
+import { useRouter } from "next/router";
 
 export default function ApplyPage() {
+  const { isAuthenticated } = useAuth0();
+  const router = useRouter();
+  if (!isAuthenticated) {
+    alert("로그인이 필요합니다.");
+    router.push("/");
+  }
+
   const {
     register,
     handleSubmit,

@@ -5,7 +5,7 @@
 
 아래 코드를 순차적으로 실행합니다.
 ```bash
-cd frontend
+cd .\front-end\
 npm i
 npm run dev
 ```

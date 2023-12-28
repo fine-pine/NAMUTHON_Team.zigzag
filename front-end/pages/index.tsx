@@ -4,8 +4,8 @@ import { useEffect } from "react";
 
 // 첫 화면
 function HomePage() {
+  // TODO: 삭제
   const { getAccessTokenSilently } = useAuth0();
-
   useEffect(() => {
     (async () => {
       const token = await getAccessTokenSilently();

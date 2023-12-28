@@ -83,7 +83,7 @@ export default function ApplyPage() {
 
       <form onSubmit={handleSubmit(onValid)}>
         <div className="space-y-12">
-          <h2 className="text-base font-semibold leading-7 text-gray-900">
+          <h2 className="text-2xl font-semibold leading-7 text-gray-900">
             신청서
           </h2>
           <div className="mt-10 flex flex-col gap-4">

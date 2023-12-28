@@ -41,9 +41,9 @@ export type Application = {
   bank: Bank;
   account: string;
   status: 0 | 1 | 2 | 3;
-  description: string;
-  admittedAt: Date;
-  colledtedAt: Date;
+  description?: string;
+  admittedAt?: Date;
+  collectedAt?: Date;
   createdAt: Date;
   updatedAt: Date;
 };

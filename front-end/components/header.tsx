@@ -1,7 +1,10 @@
 import Link from "next/link";
 import { Container } from "../components/container";
+import { useAuth0 } from "@auth0/auth0-react";
 
 export default function Header() {
+  const { isAuthenticated, logout, loginWithPopup } = useAuth0();
+
   return (
     <header className="py-6">
       <Container>
@@ -28,6 +31,23 @@ export default function Header() {
           >
             신청서목록
           </Link>
+          {isAuthenticated ? (
+            <button
+              type="button"
+              className="hover:text-yellow-400 transition-colors"
+              onClick={() => loginWithPopup()}
+            >
+              로그인
+            </button>
+          ) : (
+            <button
+              type="button"
+              className="hover:text-yellow-400 transition-colors"
+              onClick={() => logout()}
+            >
+              로그아웃
+            </button>
+          )}
         </nav>
       </Container>
     </header>

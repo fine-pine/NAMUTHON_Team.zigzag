@@ -28,7 +28,6 @@ public class SecurityConfig {
                 .csrf(AbstractHttpConfigurer::disable)
                 .sessionManagement((sessionManagement) ->
                         sessionManagement.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-                .addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class)
                 .authorizeHttpRequests(httpRequests -> httpRequests
                         .requestMatchers(CorsUtils::isPreFlightRequest).permitAll() // Preflight 요청은 허용 , 사전 인증이라는 요청 방식은 허용하겠다
                         .requestMatchers(new AntPathRequestMatcher("/")
@@ -37,10 +36,10 @@ public class SecurityConfig {
                                 , new AntPathRequestMatcher("/h2-console/**")
                                 , new AntPathRequestMatcher("/profile")
                         ).permitAll()
-                        .requestMatchers("/v1/oauth/login/callback").permitAll()
+                        .requestMatchers("/v1/oauth/login/**").permitAll()
                         .requestMatchers("/v1/oauth/user/info").permitAll()
                         .anyRequest().authenticated()
-                );
+                ).addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
         return httpSecurity.build();
     }
 }

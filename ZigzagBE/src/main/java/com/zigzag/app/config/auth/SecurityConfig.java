@@ -37,6 +37,7 @@ public class SecurityConfig {
                                 , new AntPathRequestMatcher("/profile")
                         ).permitAll()
                         .requestMatchers("/v1/oauth/login/**").permitAll()
+                        .requestMatchers("/api/v1/application").permitAll()
                         .requestMatchers("/v1/oauth/user/info").permitAll()
                         .anyRequest().authenticated()
                 ).addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);

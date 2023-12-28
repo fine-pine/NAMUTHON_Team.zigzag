@@ -14,7 +14,7 @@ export default function ApplicationPage({ application }) {
     router.push("/");
   }
 
-  console.log(router.query);
+  console.log(router.query.slug);
 
   if (!router.isFallback && !application?.slug) {
     return <ErrorPage statusCode={404} />;

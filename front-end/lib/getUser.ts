@@ -8,8 +8,8 @@ export default async function getUser(token: string) {
     `https://${process.env.NEXT_PUBLIC_AUTH0_DOMAIN}/userinfo`,
     {
       headers: {
-        Authorization: `Bearer ${token}`,
         "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
       },
     }
   );

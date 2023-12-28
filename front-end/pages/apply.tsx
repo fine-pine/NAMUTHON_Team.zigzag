@@ -8,7 +8,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { useRouter } from "next/router";
 
 export default function ApplyPage() {
-  const { isAuthenticated } = useAuth0();
+  const { isAuthenticated, getAccessTokenSilently } = useAuth0();
   const router = useRouter();
   if (!isAuthenticated) {
     alert("로그인이 필요합니다.");
@@ -40,7 +40,7 @@ export default function ApplyPage() {
 
   const cancelButtonRef = useRef(null);
 
-  const onValid = (data: ApplicationForm) => {
+  const onValid = async (data: ApplicationForm) => {
     const body = {
       watt: data.watt,
       address: data.address + " " + data.address_detail,
@@ -50,11 +50,13 @@ export default function ApplyPage() {
       account: data.account,
     };
 
+    const token = await getAccessTokenSilently();
     fetch("http://localhost:8080/api/v1/post/application", {
       method: "POST",
       body: JSON.stringify(body),
       headers: {
         "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
       },
     });
     reset();
@@ -267,7 +269,7 @@ export default function ApplyPage() {
                 <span className="text-xs text-red-500">
                   {errors?.phone_number?.message}
                   {errors?.phone_number?.type === "pattern"
-                    ? "올바른 계좌번호를 입력해주세요."
+                    ? "올바른 전화번호(-포함)를 입력해주세요."
                     : ""}
                 </span>
               </div>
@@ -319,7 +321,7 @@ export default function ApplyPage() {
                   <span className="text-xs text-red-500">
                     {errors?.account?.message}
                     {errors?.account?.type === "pattern"
-                      ? "올바른 계좌번호를 입력해주세요."
+                      ? "올바른 계좌번호(-포함)를 입력해주세요."
                       : ""}
                   </span>
                 </div>

@@ -32,21 +32,21 @@ function HomePage() {
           <div className="flex gap-8 mx-auto gap-x-8 gap-y-16lg:mx-0 lg:max">
             <div className="shadow-lg p-4 flex max-w-xl flex-col items-start justify-between">
               <img className="w-full" src="/banner1.png" alt="banner1" />
-              <p className="text-base mt-5 line-clamp-3 text-sm leading-6 text-gray-600">
+              <p className="text-base mt-5 line-clamp-3 leading-6 text-gray-600">
                 지그재그는 낭비되는 <b>소용량</b>의 에너지 자원을 거래하는
                 <b> 플랫폼</b>입니다.
               </p>
             </div>
             <div className="shadow-lg p-4 flex max-w-xl flex-col items-start justify-between">
               <img className="w-full" src="/banner2.png" alt="banner1" />
-              <p className="text-base mt-5 line-clamp-3 text-sm leading-6 text-gray-600">
+              <p className="text-base mt-5 line-clamp-3 leading-6 text-gray-600">
                 태양광, 태양열, 지열 등 남은 신재생 에너지로 <b>수익</b>을
                 얻어보세요.
               </p>
             </div>
             <div className="shadow-lg p-4 flex max-w-xl flex-col items-start justify-between">
               <img className="w-full" src="/banner3.png" alt="banner1" />
-              <p className="text-base mt-5 line-clamp-3 text-sm leading-6 text-gray-600">
+              <p className="text-base mt-5 line-clamp-3 leading-6 text-gray-600">
                 구매를 원하시나요? 전기 에너지를 <b>저렴</b>하게 구매할 수도
                 있습니다.
               </p>

@@ -35,17 +35,17 @@ export default function Header() {
             <button
               type="button"
               className="hover:text-yellow-400 transition-colors"
-              onClick={() => loginWithPopup()}
+              onClick={() => logout()}
             >
-              로그인
+              로그아웃
             </button>
           ) : (
             <button
               type="button"
               className="hover:text-yellow-400 transition-colors"
-              onClick={() => logout()}
+              onClick={() => loginWithPopup()}
             >
-              로그아웃
+              로그인
             </button>
           )}
         </nav>

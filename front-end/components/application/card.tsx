@@ -20,6 +20,7 @@ export default function ApplicationCard({ application }: ApplicationCardProps) {
         <div key={application.id} className="flex space-x-4">
           <div className="flex-grow">
             <div className="flex space-x-2">
+              <p className="text-gray-400">작성자 </p>
               <b>{application.user_id}</b>
               <time className="text-gray-400">
                 {distanceToNow(application.createdAt)}

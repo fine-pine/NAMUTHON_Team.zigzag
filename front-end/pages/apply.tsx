@@ -19,9 +19,7 @@ export default function ApplyPage() {
     register,
     handleSubmit,
     reset,
-    watch,
     formState: { errors },
-    setError,
     setValue,
   } = useForm<ApplicationForm>({
     defaultValues: {
@@ -29,6 +27,7 @@ export default function ApplyPage() {
       address: "",
       address_detail: "",
       phone_number: "",
+      date: new Date(),
       bank: Bank.국민,
     },
   });
@@ -42,7 +41,22 @@ export default function ApplyPage() {
   const cancelButtonRef = useRef(null);
 
   const onValid = (data: ApplicationForm) => {
-    console.log(data);
+    const body = {
+      watt: data.watt,
+      address: data.address + " " + data.address_detail,
+      phone_number: data.phone_number,
+      date: data.date,
+      bank: data.bank,
+      account: data.account,
+    };
+
+    fetch("http://localhost:8080/api/v1/post/application", {
+      method: "POST",
+      body: JSON.stringify(body),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
     reset();
   };
 
@@ -97,33 +111,61 @@ export default function ApplyPage() {
           </h2>
           <div className="mt-10 flex flex-col gap-4">
             {/* 전력량 */}
-            <div className="w-64">
-              <label
-                htmlFor="watt"
-                className="block text-sm font-medium leading-6 text-gray-900"
-              >
-                판매할 전력량
-              </label>
-              <div className="mt-2">
-                <div className="flex w-32 rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-yellow-500 sm:max-w-md">
-                  <input
-                    name="watt"
-                    id="watt"
-                    className="block w-20 text-right border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-nono sm:text-sm sm:leading-6"
-                    {...register("watt", {
-                      required: "판매할 전력량을 입력해주세요.",
-                      min: 100,
-                    })}
-                  />
-                  <span className="flex select-none items-center pl-2 text-gray-500 sm:text-sm">
-                    kWh
+            <div className="flex gap-8 w-full">
+              <div>
+                <label
+                  htmlFor="watt"
+                  className="block text-sm font-medium leading-6 text-gray-900"
+                >
+                  판매할 전력량
+                </label>
+                <div className="mt-2">
+                  <div className="flex w-32 rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-yellow-500 sm:max-w-md">
+                    <input
+                      name="watt"
+                      id="watt"
+                      className="block w-20 text-right border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-nono sm:text-sm sm:leading-6"
+                      {...register("watt", {
+                        required: "판매할 전력량을 입력해주세요.",
+                        min: 100,
+                      })}
+                    />
+                    <span className="flex select-none items-center pl-2 text-gray-500 sm:text-sm">
+                      kWh
+                    </span>
+                  </div>
+                  <span className="text-xs text-red-500">
+                    {errors?.watt?.type === "min"
+                      ? "100kWh의 전력량부터 판매 가능합니다."
+                      : ""}
                   </span>
                 </div>
-                <span className="text-xs text-red-500">
-                  {errors?.watt?.type === "min"
-                    ? "100kWh의 전력량부터 판매 가능합니다."
-                    : ""}
-                </span>
+              </div>
+              {/* 희망 수거 날짜 */}
+              <div className="w-full">
+                <label
+                  htmlFor="date"
+                  className="block text-right text-sm font-medium leading-6 text-gray-900"
+                >
+                  희망 수거날짜
+                </label>
+                <div className="mt-2">
+                  <div className="flex w-full rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-yellow-500 sm:max-w-md">
+                    <input
+                      type="date"
+                      name="date"
+                      id="date"
+                      // className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                      className="block w-full px-3 text-right border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-nono sm:text-sm sm:leading-6"
+                      {...register("date", {
+                        required: "희망하는 수거날짜를 입력하세요.",
+                      })}
+                    />
+                  </div>
+                  <span className="text-xs text-red-500">
+                    {errors?.date?.message}
+                  </span>
+                </div>
               </div>
             </div>
 
@@ -202,6 +244,35 @@ export default function ApplyPage() {
               </span>
             </div>
             {/* 전화번호 */}
+
+            <div className="w-full">
+              <label
+                htmlFor="phone_number"
+                className="block text-sm font-medium leading-6 text-gray-900"
+              >
+                전화번호
+              </label>
+              <div className="mt-2">
+                <div className="flex min-w-full rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-yellow-500 sm:max-w-md">
+                  <input
+                    name="phone_number"
+                    id="phone_number"
+                    className="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
+                    {...register("phone_number", {
+                      required: "전화번호를 입력해주세요.",
+                      pattern: /^[0-9]{3}[-]+[0-9]{4}[-]+[0-9]{4}$/,
+                    })}
+                  />
+                </div>
+                <span className="text-xs text-red-500">
+                  {errors?.phone_number?.message}
+                  {errors?.phone_number?.type === "pattern"
+                    ? "올바른 계좌번호를 입력해주세요."
+                    : ""}
+                </span>
+              </div>
+            </div>
+
             {/* 은행 */}
             <div className="flex gap-6">
               <div className="w-32">
@@ -229,7 +300,7 @@ export default function ApplyPage() {
               <div className="w-full">
                 <label
                   htmlFor="account"
-                  className="block text-sm font-medium leading-6 text-gray-900"
+                  className="block text-sm text-right font-medium leading-6 text-gray-900"
                 >
                   계좌번호
                 </label>

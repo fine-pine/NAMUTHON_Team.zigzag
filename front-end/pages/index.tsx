@@ -75,7 +75,7 @@ function HomePage() {
                 <Link
                   href="/apply"
                   type="submit"
-                  className="rounded-md bg-white px-6 py-4 text-xl font-semibold shadow-sm hover:text-yellow-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-yellow-500"
+                  className="rounded-md text-center bg-white px-6 py-4 text-xl font-semibold shadow-sm hover:text-yellow-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-yellow-500"
                 >
                   바로 신청하기
                 </Link>

@@ -1,14 +1,14 @@
-import CommentForm from './form'
-import CommentList from './list'
-import useComments from '../../hooks/useComment'
+import CommentForm from "./form";
+import CommentList from "./list";
+import useApplications from "../../hooks/useApplications";
 
 export default function Comment() {
-  const { text, setText, comments, onSubmit, onDelete } = useComments()
+  const { text, setText, applications, onSubmit, onDelete } = useApplications();
 
   return (
     <div className="mt-20">
       <CommentForm onSubmit={onSubmit} text={text} setText={setText} />
-      <CommentList comments={comments} onDelete={onDelete} />
+      <CommentList applications={applications} onDelete={onDelete} />
     </div>
-  )
+  );
 }

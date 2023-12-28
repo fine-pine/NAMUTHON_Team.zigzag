@@ -28,6 +28,7 @@ export type ApplicationForm = {
   address?: string;
   address_detail?: string;
   phone_number?: string;
+  date?: Date;
   bank?: Bank;
   account?: string;
 };
@@ -38,6 +39,7 @@ export type Application = {
   watt: number;
   address: string;
   phone_number: string;
+  date: Date;
   bank: Bank;
   account: string;
   status: 0 | 1 | 2 | 3;

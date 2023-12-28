@@ -1,17 +1,17 @@
-import type { Comment } from "../interfaces";
+import type { Application } from "../interfaces";
 import React, { useState } from "react";
 import useSWR from "swr";
 import { useAuth0 } from "@auth0/auth0-react";
 
 const fetcher = (url) => fetch(url).then((res) => res.json());
 
-export default function useComments() {
+export default function useApplications() {
   const { getAccessTokenSilently } = useAuth0();
   const [text, setText] = useState("");
 
   // 데이터 조회, 캐싱에 사용되는 리액트 훅
-  const { data: comments, mutate } = useSWR<Comment[]>(
-    "/api/comment",
+  const { data: applications, mutate } = useSWR<Comment[]>(
+    "http://localhost:8080/v1/api/post/application",
     fetcher,
     { fallbackData: [] }
   );
@@ -54,5 +54,5 @@ export default function useComments() {
     }
   };
 
-  return { text, setText, comments, onSubmit, onDelete };
+  return { text, setText, applications, onSubmit, onDelete };
 }

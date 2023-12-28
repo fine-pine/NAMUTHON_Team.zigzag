@@ -12,6 +12,8 @@ function ProfilePage() {
       const token = await getAccessTokenSilently();
       fetch(`http://localhost:8080/v1/oauth/login?code=${token}`, {
         method: "POST",
+        mode: "cors",
+        cache: "no-cache",
         credentials: "include",
       }).then(() => {
         router.push("/");

@@ -1,9 +1,11 @@
 import Link from "next/link";
 import { Container } from "../components/container";
 import { useAuth0 } from "@auth0/auth0-react";
+import { useRouter } from "next/router";
 
 export default function Header() {
   const { isAuthenticated, logout, loginWithPopup } = useAuth0();
+  const router = useRouter();
 
   return (
     <header className="py-6">
@@ -43,7 +45,11 @@ export default function Header() {
             <button
               type="button"
               className="hover:text-yellow-400 transition-colors"
-              onClick={() => loginWithPopup()}
+              onClick={() =>
+                loginWithPopup().then((reslove) => {
+                  router.push("/login");
+                })
+              }
             >
               로그인
             </button>

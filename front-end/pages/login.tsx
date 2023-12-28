@@ -1,4 +1,4 @@
-import { useEffect, useReducer } from "react";
+import { useEffect } from "react";
 import { Container } from "../components/container";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useRouter } from "next/router";
@@ -10,7 +10,9 @@ function ProfilePage() {
   useEffect(() => {
     (async () => {
       const token = await getAccessTokenSilently();
-      fetch(`http://localhost:8080/v1/oauth/login?code=${token}`).then(() => {
+      fetch(`http://localhost:8080/v1/oauth/login?code=${token}`, {
+        method: "POST",
+      }).then(() => {
         router.push("/");
       });
     })();

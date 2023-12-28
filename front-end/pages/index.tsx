@@ -1,17 +1,24 @@
 import Container from "../components/container";
-import Image from "next/image";
 import { useAuth0 } from "@auth0/auth0-react";
+import { useEffect } from "react";
 
 // 첫 화면
 function HomePage() {
-  const { user } = useAuth0();
-  console.log(user);
+  const { getAccessTokenSilently } = useAuth0();
+
+  useEffect(() => {
+    (async () => {
+      const token = await getAccessTokenSilently();
+      console.log(token);
+    })();
+  }, []);
+
   return (
     <>
       <Container>
         <div className="space-y-6">
           <div className="flex gap-4 items-center">
-            <img className="w-32" src="/zigzag_logo.png" alt="지그재그 로고" />
+            <img className="w-32" src="/zigzag_logo.png" alt="zigzag_logo" />
             <h1 className="text-4xl font-bold text-yellow-400">지그재그</h1>
           </div>
           <p className="text-lg">

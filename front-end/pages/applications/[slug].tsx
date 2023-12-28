@@ -8,7 +8,7 @@ import { getAllPosts, getPostBySlug } from "../../lib/getPost";
 import markdownToHtml from "../../lib/markdownToHtml";
 import Head from "next/head";
 
-export default function PostPage({
+export default function ApplicationPage({
   post,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
   const router = useRouter();
@@ -20,7 +20,7 @@ export default function PostPage({
   return (
     <Container>
       <Head>
-        <title>{post.title} | My awesome blog</title>
+        <title>신청서 상세보기</title>
       </Head>
 
       {router.isFallback ? (

@@ -5,21 +5,28 @@ export default function Header() {
   return (
     <header className="py-6">
       <Container>
-        <nav className="flex space-x-4">
+        <nav className="flex items-center space-x-4">
+          <img className="w-12 h-12" src="/zigzag_logo.png" alt="zigzag_logo" />
           <Link className="hover:text-yellow-400 transition-colors" href="/">
-            About
+            홈
           </Link>
           <Link
             className="hover:text-yellow-400 transition-colors"
             href="/apply"
           >
-            Apply
+            신청하기
+          </Link>
+          <Link
+            className="hover:text-yellow-400 transition-colors"
+            href="/profile"
+          >
+            마이페이지
           </Link>
           <Link
             className="hover:text-yellow-400 transition-colors"
             href="/applications"
           >
-            Applications
+            신청서목록
           </Link>
         </nav>
       </Container>

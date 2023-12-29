@@ -31,6 +31,9 @@ public class Application extends BaseTimeEntity {
     private String phoneNumber;
 
     @NotNull
+    private LocalDate date;
+
+    @NotNull
     private String bank;
 
     @NotNull

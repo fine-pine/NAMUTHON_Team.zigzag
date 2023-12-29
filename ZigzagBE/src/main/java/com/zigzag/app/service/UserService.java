@@ -43,7 +43,7 @@ public class UserService {
 
     // 주어진 유저를 생성하거나 업데이트한다. 이미 존재하는 유저라면 업데이트하고, 존재하지 않는 경우 새로운 유저로 생성한다
     @Transactional
-    public User createOrUpdateUser(User user){
+    public User createOrUpdateUser(User user) {
         User existingUser = userRepository.findByGoogleEmail(user.getGoogleEmail()).orElse(null);
         // 존재하지 않는 경우
         if(existingUser==null){
@@ -57,7 +57,7 @@ public class UserService {
         existingUser.setGoogleEmail(user.getGoogleEmail());
         existingUser.setName(user.getName());
         existingUser.setProfileImageUrl(user.getProfileImageUrl());
-        existingUser.setRole(user.getRole());
+        existingUser.setRole(Role.USER);
 
         return existingUser;
     }

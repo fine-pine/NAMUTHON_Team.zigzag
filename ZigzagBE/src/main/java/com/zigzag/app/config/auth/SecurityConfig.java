@@ -39,6 +39,7 @@ public class SecurityConfig {
                         .requestMatchers("/v1/oauth/login/**").permitAll()
                         .requestMatchers("/api/v1/application").permitAll()
                         .requestMatchers("/v1/oauth/user/info").permitAll()
+                        .requestMatchers("/api/v1/applications").permitAll()
                         .anyRequest().authenticated()
                 ).addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
         return httpSecurity.build();

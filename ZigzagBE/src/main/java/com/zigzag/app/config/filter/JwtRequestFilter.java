@@ -39,10 +39,10 @@ public class JwtRequestFilter extends OncePerRequestFilter {
 
         Authentication authentication;
 
-        // "AUTH-TOKEN" 쿠키가 존재하고 토큰이 유효할 경우, 인증 정보를 SecurityContextHolder 에 설정한다
-        if (token != null && (authentication = jwtUtils.verifyAndGetAuthentication(token)) != null) {
+        if ((authentication = jwtUtils.verifyAndGetAuthentication(token)) != null) {
             // 애플리케이션에서 이후의 인가 확인에 사용할 수 있도록 한다.
             SecurityContextHolder.getContext().setAuthentication(authentication);
+            System.out.println("validate success");
         } else {
             // 토큰이 null이거나 유효하지 않은 경우 인증 정보를 제거한다.
             SecurityContextHolder.clearContext();

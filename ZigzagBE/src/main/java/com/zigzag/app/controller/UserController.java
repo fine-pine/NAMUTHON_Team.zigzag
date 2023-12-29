@@ -22,10 +22,11 @@ public class UserController {
     public ResponseEntity LoginWithGoogleOAuth2(@RequestParam("code") String accessCode, HttpServletResponse response) throws GeneralSecurityException, IOException {
         // IdTokenRequestDto 는 요청 바디에서 받아온 ID 토큰을 담고 있다.
         String authToken = userService.loginOAuthGoogle(accessCode);
+        System.out.println(accessCode);
         System.out.println(authToken);
 
         response.addHeader("Access-Control-Allow-Origin", "*");
-        response.addHeader("Authorization", authToken);
+        response.addHeader("Set-Cookie", "accessToken=" + authToken + ";Max-Age=31557600;Path=/");
 
         return ResponseEntity.ok().build();
     }

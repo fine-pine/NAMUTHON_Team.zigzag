@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import { application_dummy } from "../_dummy";
+import { application_dummy, applications_dummy } from "../_dummy";
 import ApplicationCard from "../components/application/card";
 import { Container } from "../components/container";
 import { useAuth0 } from "@auth0/auth0-react";
@@ -39,10 +39,12 @@ function ProfilePage() {
         <h2 className="text-2xl font-semibold leading-7 text-gray-900 pt-10 sm:mt-16 sm:pt-8 py-6 sm:py-8 space-y-6">
           나의 신청 목록
         </h2>
-        <ApplicationCard application={application_dummy} />
-        <ApplicationCard application={application_dummy} />
-        <ApplicationCard application={application_dummy} />
-        <ApplicationCard application={application_dummy} />
+        {applications_dummy.map((it, idx, arr) => (
+          <ApplicationCard
+            application={it}
+            isIncreased={it.watt > (arr[idx + 1]?.watt ?? 0)}
+          />
+        ))}
       </Container>
     </>
   );

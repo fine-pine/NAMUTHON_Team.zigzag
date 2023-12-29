@@ -38,9 +38,13 @@ const ApplicationStatus = ({ status }) => {
 
 type ApplicationCardProps = {
   application?: Application;
+  isIncreased: boolean;
 };
 
-export default function ApplicationCard({ application }: ApplicationCardProps) {
+export default function ApplicationCard({
+  application,
+  isIncreased = true,
+}: ApplicationCardProps) {
   // Auth0를 이용한 인증
   const { user } = useAuth0();
 
@@ -59,7 +63,10 @@ export default function ApplicationCard({ application }: ApplicationCardProps) {
           <time className="text-gray-400">
             {application.createdAt.toISOString().slice(0, 10)}
           </time>
-          <div>{application.watt} kWh</div>
+          <div className={isIncreased ? "text-green-500" : "text-red-600"}>
+            {isIncreased ? "▲" : "▼"}
+            {application.watt} kWh
+          </div>
           <div className="flex items-center space-x-2">
             <b>{application.user_id}</b>
           </div>

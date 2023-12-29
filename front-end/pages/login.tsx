@@ -21,6 +21,8 @@ function LoginPage() {
           Accept: "application/json",
           "Content-Type": "application/json",
         },
+      }).then(() => {
+        router.push("/");
       });
     })();
   }, []);

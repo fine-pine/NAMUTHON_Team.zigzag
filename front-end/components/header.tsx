@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Container } from "../components/container";
+import { WideContainer } from "../components/container";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useRouter } from "next/router";
 import { usePathname } from "next/navigation";
@@ -11,8 +11,8 @@ export default function Header() {
 
   return (
     <header className="py-6">
-      <Container>
-        <nav className="flex items-center space-x-4">
+      <WideContainer>
+        <nav className="flex flex-col items-center space-x-4 min-w-full sm:flex-row">
           <img className="w-12 h-12" src="/zigzag_logo.png" alt="zigzag_logo" />
           <Link
             className={`${
@@ -76,7 +76,7 @@ export default function Header() {
             </button>
           )}
         </nav>
-      </Container>
+      </WideContainer>
     </header>
   );
 }

@@ -23,7 +23,7 @@ function HomePage() {
           <p className="mt-2 text-2xl font-bold leading-8 text-gray-600 mb-14">
             안녕하세요. 지그재그입니다.
           </p>
-          <div className="flex gap-8 mx-auto gap-x-8 gap-y-16lg:mx-0 lg:max">
+          <div className="flex flex-col gap-8 mx-auto gap-x-8 gap-y-16lg:mx-0 lg:max sm:flex-row">
             <div className="shadow-lg p-4 flex max-w-xl flex-col items-start justify-between">
               <img className="w-full" src="/banner1.png" alt="banner1" />
               <p className="text-base mt-5 line-clamp-3 leading-6 text-gray-600">
@@ -66,7 +66,7 @@ function HomePage() {
             <h1 className="text-xl font-bold">
               간략한 신청서 작성을 통해 전기 에너지를 판매해보세요.
             </h1>
-            <div className="flex gap-24 items-center justify-between text-black rounded-full">
+            <div className="flex flex-col gap-24 items-center justify-between text-black rounded-full sm:flex-row">
               <img className="w-64" src="/banner4.png" alt="banner4" />
               <div className="flex flex-col gap-4">
                 <h2 className="text-2xl text-white">

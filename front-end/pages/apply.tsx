@@ -60,6 +60,7 @@ export default function ApplyPage() {
       },
     });
     reset();
+    router.push("/");
   };
 
   return (

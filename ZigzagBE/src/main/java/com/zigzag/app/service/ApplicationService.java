@@ -2,6 +2,7 @@ package com.zigzag.app.service;
 
 import com.zigzag.app.dto.ApplicationListResponseDto;
 import com.zigzag.app.dto.ApplicationSaveRequestDto;
+import com.zigzag.app.entity.Application;
 import com.zigzag.app.entity.User;
 import com.zigzag.app.repository.ApplicationRepository;
 import jakarta.transaction.Transactional;
@@ -30,10 +31,29 @@ public class ApplicationService {
         } else {
             long user_id = Long.valueOf((String) authentication.getPrincipal());
             User currentUser = userService.getUser(user_id);
-            requestDto.setUser(currentUser);
 
-            applicationRepository.save(requestDto.toEntity());
-            return ResponseEntity.ok().body("신청을 완료하였습니다. ");
+            if (currentUser != null) {
+                Application application = Application.builder()
+                        .user(currentUser)
+                        .watt(requestDto.getWatt())
+                        .address(requestDto.getAddress())
+                        .phoneNumber(requestDto.getPhone_number())
+                        .date(requestDto.getDate())
+                        .bank(requestDto.getBank())
+                        .account(requestDto.getAccount())
+                        .status(requestDto.getStatus())
+                        // 필요한 만큼 다른 필드를 추가
+                        .build();
+                try {
+                    applicationRepository.save(application);
+                    return ResponseEntity.ok().body("신청을 완료하였습니다. ");
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    return ResponseEntity.ok().body("신청 처리 중 오류가 발생하였습니다. ");
+                }
+            } else {
+                return ResponseEntity.ok().body("유저 정보를 찾을 수 없습니다. ");
+            }
         }
     }
 

@@ -6,11 +6,11 @@ import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
 @Getter
-@Setter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
 @Table(name = "USERS")
 @Builder
+@Setter
 @AllArgsConstructor
 public class User {
     @Id

@@ -1,7 +1,7 @@
 package com.zigzag.app.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.zigzag.app.entity.Application;
-import com.zigzag.app.entity.User;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -11,11 +11,11 @@ import java.time.LocalDate;
 @Getter
 @Setter
 @NoArgsConstructor
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class ApplicationSaveRequestDto {
-    private User user;
     private Long watt;
     private String address;
-    private String phoneNumber;
+    private String phone_number;
     private String bank;
     private String account;
     private Integer status = 0;
@@ -25,7 +25,7 @@ public class ApplicationSaveRequestDto {
         return Application.builder()
                 .watt(watt)
                 .address(address)
-                .phoneNumber(phoneNumber)
+                .phoneNumber(phone_number)
                 .bank(bank)
                 .account(account)
                 .status(status)

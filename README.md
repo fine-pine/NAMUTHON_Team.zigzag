@@ -26,18 +26,20 @@ sudo /etc/init.d/mysql start
 sudo mysql
 ```
 
-* 데이터베이스를 생성하고 사용자를 생성합니다.
+* 데이터베이스를 생성합니다.
 
 ```bash
 CREATE DATABASE namutondb;
 USE namutondb;
 ```
 
+* 사용자를 생성합니다.
+
 ```bash
 CREATE USER 'namuadmin'@'%' identified by '1210';
 GRANT ALL PRIVILEGES ON *.* to 'namuadmin'@'%';
 FLUSH PRIVILEGES;
-``
+```
 
 
 ## 백엔드 서버

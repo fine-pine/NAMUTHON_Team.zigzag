@@ -11,6 +11,7 @@ import java.time.LocalDate;
 @Entity
 @Table(name = "APPLICATIONS")
 @Builder
+@Setter
 @AllArgsConstructor
 public class Application extends BaseTimeEntity {
     @Id
@@ -47,4 +48,8 @@ public class Application extends BaseTimeEntity {
     private LocalDate admittedAt;
 
     private LocalDate collectedAt;
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 }

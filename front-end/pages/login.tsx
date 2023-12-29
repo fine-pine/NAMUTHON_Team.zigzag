@@ -3,7 +3,6 @@ import { Container } from "../components/container";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useRouter } from "next/router";
 import { setAccessCookie } from "../lib/handleCookie";
-import axios from "axios";
 
 function LoginPage() {
   const { getAccessTokenSilently } = useAuth0();

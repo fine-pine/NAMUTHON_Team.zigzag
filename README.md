@@ -31,7 +31,9 @@ sudo mysql
 ```bash
 CREATE DATABASE namutondb;
 USE namutondb;
+```
 
+```bash
 CREATE USER 'namuadmin'@'%' identified by '1210';
 GRANT ALL PRIVILEGES ON *.* to 'namuadmin'@'%';
 FLUSH PRIVILEGES;

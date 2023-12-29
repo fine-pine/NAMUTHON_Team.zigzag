@@ -19,8 +19,4 @@ public class ApplicationController {
         return applicationService.save(requestDto);
     }
 
-    @GetMapping("/api/v1/application")
-    public ResponseEntity<?> getAllApplication() {
-
-    }
 }

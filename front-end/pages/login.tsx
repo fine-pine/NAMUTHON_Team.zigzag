@@ -3,8 +3,9 @@ import { Container } from "../components/container";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useRouter } from "next/router";
 import { setAccessCookie } from "../lib/handleCookie";
+import axios from "axios";
 
-function ProfilePage() {
+function LoginPage() {
   const { getAccessTokenSilently } = useAuth0();
   const router = useRouter();
 
@@ -16,9 +17,10 @@ function ProfilePage() {
         mode: "no-cors",
         cache: "no-cache",
         credentials: "include",
-      }).then((res) => {
-        setAccessCookie(res.headers.get("authorization"));
-        router.push("/");
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
       });
     })();
   }, []);
@@ -30,4 +32,4 @@ function ProfilePage() {
   );
 }
 
-export default ProfilePage;
+export default LoginPage;

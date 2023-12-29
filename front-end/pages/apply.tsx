@@ -6,6 +6,7 @@ import { Dialog, Transition } from "@headlessui/react";
 import { Fragment, useRef, useState } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useRouter } from "next/router";
+import { getAccessCookie } from "../lib/handleCookie";
 
 export default function ApplyPage() {
   const { isAuthenticated, getAccessTokenSilently } = useAuth0();
@@ -50,13 +51,12 @@ export default function ApplyPage() {
       account: data.account,
     };
 
-    const token = await getAccessTokenSilently();
     fetch("http://localhost:8080/api/v1/post/application", {
       method: "POST",
       body: JSON.stringify(body),
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
+        Authorization: `Bearer ${getAccessCookie()}`,
       },
     });
     reset();

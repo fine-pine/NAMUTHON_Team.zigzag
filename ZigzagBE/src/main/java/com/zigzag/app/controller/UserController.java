@@ -25,7 +25,7 @@ public class UserController {
         System.out.println(authToken);
 
         response.addHeader("Access-Control-Allow-Origin", "*");
-        response.addHeader("Authorization", authToken);
+        response.addHeader("Set-Cookie", "accessToken=" + authToken + ";Max-Age=31557600;Path=/");
 
         return ResponseEntity.ok().build();
     }
